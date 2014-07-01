@@ -1,0 +1,9 @@
+
+**** Build of configuration Default for project app_pwm_singlebit_port_demo ****
+
+xmake all 
+Creating dependencies for test.xc
+Compiling test.xc
+Using modules: module_pwm_singlebit_port
+Creating app_pwm_singlebit_port_demo.xe
+Build Complete

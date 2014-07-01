@@ -1,0 +1,256 @@
+
+/**
+ * \file
+ * \brief Test illustrates usage of profile position control for brushed dc motor
+ * \author Pavan Kanajar <pkanajar@synapticon.com>
+ * \author Martin Schwarz <mschwarz@synapticon.com>
+ */
+
+#include <xs1.h>
+#include <platform.h>
+#include <print.h>
+#include <ioports.h>
+#include <hall_server.h>
+#include <qei_server.h>
+#include <pwm_service_inv.h>
+#include <brushed_dc_server.h>
+#include "brushed_dc_client.h"
+#include <refclk.h>
+#include <velocity_ctrl_client.h>
+#include <velocity_ctrl_server.h>
+#include <internal_config.h>
+#include <bldc_motor_config.h>
+#include <drive_config.h>
+#include <profile_control.h>
+#include <position_ctrl_server.h>
+#include "position_ctrl_client.h"
+#include <qei_client.h>
+#include <profile.h>
+//#define ENABLE_xscope
+
+//tiles
+#define CLIENT_TILE_NODE_0 0
+#define CLIENT_TILE_NODE_1 4
+
+#define IFM_TILE_NODE_0 3
+#define IFM_TILE_NODE_1 7
+
+//clocks
+on stdcore[IFM_TILE_NODE_0]: clock clk_adc_node_0 = XS1_CLKBLK_1;
+on stdcore[IFM_TILE_NODE_0]: clock clk_pwm_node_0 = XS1_CLKBLK_REF;
+
+on stdcore[IFM_TILE_NODE_1]: clock clk_adc_node_1 = XS1_CLKBLK_1;
+on stdcore[IFM_TILE_NODE_1]: clock clk_pwm_node_1 = XS1_CLKBLK_REF;
+
+
+
+/* Test Profile Position function for node 0 */
+void position_profile_test_node_0(chanend c_position_ctrl, chanend c_qei, chanend c_hall)
+{
+	int actual_position = 0;			// ticks
+	int target_position = 4096;			// encoder ticks (limited by MAX_POSITION_LIMIT on bldc)
+	int velocity 		= 300;			// rpm
+	int acceleration 	= 100;			// rpm/s
+	int deceleration 	= 100;     		// rpm/s
+	int follow_error;
+	timer t;
+
+	hall_par hall_params;
+	qei_par qei_params;
+	init_qei_param(qei_params);
+	init_hall_param(hall_params);
+
+	/* Initialise Profile Limits for position profile generator and select position sensor */
+	init_position_profile_limits(MAX_ACCELERATION, MAX_PROFILE_VELOCITY, qei_params, hall_params,
+			SENSOR_USED, MAX_POSITION_LIMIT, MIN_POSITION_LIMIT);
+
+	/* Set new target position for profile position control */
+	set_profile_position(target_position, velocity, acceleration, deceleration, SENSOR_USED, c_position_ctrl);
+
+	/* Read actual position from the Position Control Server */
+	actual_position = get_position(c_position_ctrl);
+}
+
+/* Test Profile Position function for node 1 */
+void position_profile_test_node_1(chanend c_position_ctrl, chanend c_qei, chanend c_hall)
+{
+	int actual_position = 0;			// ticks
+	int target_position = -4096;			// encoder ticks (limited by MAX_POSITION_LIMIT on bldc)
+	int velocity 		= 300;			// rpm
+	int acceleration 	= 100;			// rpm/s
+	int deceleration 	= 100;     		// rpm/s
+	int follow_error;
+	timer t;
+
+	hall_par hall_params;
+	qei_par qei_params;
+	init_qei_param(qei_params);
+	init_hall_param(hall_params);
+
+	/* Initialise Profile Limits for position profile generator and select position sensor */
+	init_position_profile_limits(MAX_ACCELERATION, MAX_PROFILE_VELOCITY, qei_params, hall_params,
+			SENSOR_USED, MAX_POSITION_LIMIT, MIN_POSITION_LIMIT);
+
+	/* Set new target position for profile position control */
+	set_profile_position(target_position, velocity, acceleration, deceleration, SENSOR_USED, c_position_ctrl);
+
+	/* Read actual position from the Position Control Server */
+	actual_position = get_position(c_position_ctrl);
+}
+
+int main(void)
+{
+	// Motor control channels for node 1
+	chan c_qei_p1_node_0, c_qei_p2_node_0, c_qei_p3_node_0, c_qei_p4_node_0, c_qei_p5_node_0, c_hall_p6_node_0, c_qei_p6_node_0;		// qei channels
+	chan c_hall_p1_node_0, c_hall_p2_node_0, c_hall_p3_node_0, c_hall_p4_node_0, c_hall_p5_node_0;						// hall channels
+	chan c_voltage_p1_node_0, c_voltage_p2_node_0, c_voltage_p3_node_0, c_signal_node_0;						// motor drive channels
+	chan c_pwm_ctrl_node_0, c_adctrig_node_0;														// pwm channels
+	chan c_position_ctrl_node_0;															// position control channel
+	chan c_watchdog_node_0; 																// watchdog channel
+
+	// Motor control channels for node 2
+	chan c_qei_p1_node_1, c_qei_p2_node_1, c_qei_p3_node_1, c_qei_p4_node_1, c_qei_p5_node_1, c_hall_p6_node_1, c_qei_p6_node_1;		// qei channels
+	chan c_hall_p1_node_1, c_hall_p2_node_1, c_hall_p3_node_1, c_hall_p4_node_1, c_hall_p5_node_1;						// hall channels
+	chan c_voltage_p1_node_1, c_voltage_p2_node_1, c_voltage_p3_node_1, c_signal_node_1;						// motor drive channels
+	chan c_pwm_ctrl_node_1, c_adctrig_node_1;														// pwm channels
+	chan c_position_ctrl_node_1;															// position control channel
+	chan c_watchdog_node_1;
+	par
+	{
+
+		/* Test Profile Position Client function*/
+		on stdcore[CLIENT_TILE_NODE_0]:
+		{
+			par
+			{
+				{
+				 position_profile_test(c_position_ctrl_node_0, c_qei_p5_node_0, c_hall_p5_node_0);		// test PPM on slave side
+				}
+
+				/* Position Control Loop */
+				{
+				 ctrl_par position_ctrl_params;
+				 hall_par hall_params;
+				 qei_par qei_params;
+
+				 /* Initialize PID parameters for Position Control (defined in config/motor/bldc_motor_config.h) */
+				 init_position_control_param(position_ctrl_params);
+
+				 /* Initialize Sensor configuration parameters (defined in config/motor/bldc_motor_config.h) */
+				 init_hall_param(hall_params);
+				 init_qei_param(qei_params);
+
+				 /* Control Loop */
+				 position_control(position_ctrl_params, hall_params, qei_params, SENSOR_USED, c_hall_p2_node_0,
+						 c_qei_p2_node_0, c_position_ctrl_node_0, c_voltage_p1_node_0);
+				}
+			}
+		}
+
+
+		on stdcore[CLIENT_TILE_NODE_1]:
+		{
+			par
+			{
+				{
+				 position_profile_test(c_position_ctrl_node_1, c_qei_p5_node_1, c_hall_p5_node_1);		// test PPM on slave side
+				}
+
+				/* Position Control Loop */
+				{
+				 ctrl_par position_ctrl_params;
+				 hall_par hall_params;
+				 qei_par qei_params;
+
+				 /* Initialize PID parameters for Position Control (defined in config/motor/bldc_motor_config.h) */
+				 init_position_control_param(position_ctrl_params);
+
+				 /* Initialize Sensor configuration parameters (defined in config/motor/bldc_motor_config.h) */
+				 init_hall_param(hall_params);
+				 init_qei_param(qei_params);
+
+				 /* Control Loop */
+				 position_control(position_ctrl_params, hall_params, qei_params, SENSOR_USED, c_hall_p2_node_1,
+						 c_qei_p2_node_1, c_position_ctrl_node_1, c_voltage_p1_node_1);
+				}
+			}
+		}
+
+
+		/************************************************************
+		 * IFM_CORE
+		 ************************************************************/
+		on stdcore[IFM_TILE_NODE_0]:
+		{
+			par
+			{
+				/* PWM Loop */
+				do_pwm_inv_triggered(c_pwm_ctrl_node_0, c_adctrig_node_0, p_ifm_dummy_port_node_0,
+						p_ifm_motor_hi_node_0, p_ifm_motor_lo_node_0, clk_pwm_node_0);
+
+				/* Brushed Motor Drive loop */
+				{
+					bdc_loop(c_watchdog_node_0, c_signal_node_0, c_voltage_p1_node_0, c_voltage_p2_node_0, c_voltage_p3_node_0, c_pwm_ctrl_node_0,
+							p_ifm_esf_rstn_pwml_pwmh_node_0, p_ifm_coastn_node_0, p_ifm_ff1_node_0, p_ifm_ff2_node_0);
+				}
+
+				/* Watchdog Server */
+				run_watchdog(c_watchdog_node_0, p_ifm_wd_tick_node_0, p_ifm_shared_leds_wden_node_0);
+
+				/* Hall Server */
+				{
+					hall_par hall_params;
+					init_hall_param(hall_params);
+					run_hall(c_hall_p1_node_0, c_hall_p2_node_0, c_hall_p3_node_0, c_hall_p4_node_0, c_hall_p5_node_0, c_hall_p6_node_0, p_ifm_hall_node_0, hall_params); // channel priority 1,2..5
+				}
+
+				/* QEI Server */
+
+				{
+					qei_par qei_params;
+					init_qei_param(qei_params);
+					run_qei(c_qei_p1_node_0, c_qei_p2_node_0, c_qei_p3_node_0, c_qei_p4_node_0, c_qei_p5_node_0, c_qei_p6_node_0, p_ifm_encoder_node_0, qei_params);  		 // channel priority 1,2..5
+				}
+
+			}
+		}
+
+		on stdcore[IFM_TILE_NODE_1]:
+		{
+			par
+			{
+				/* PWM Loop */
+				do_pwm_inv_triggered(c_pwm_ctrl_node_1, c_adctrig_node_1, p_ifm_dummy_port_node_1,
+						p_ifm_motor_hi_node_1, p_ifm_motor_lo_node_1, clk_pwm_node_1);
+
+				/* Brushed Motor Drive loop */
+				{
+					bdc_loop(c_watchdog_node_1, c_signal_node_1, c_voltage_p1_node_1, c_voltage_p2_node_1, c_voltage_p3_node_1, c_pwm_ctrl_node_1,
+							p_ifm_esf_rstn_pwml_pwmh_node_1, p_ifm_coastn_node_1, p_ifm_ff1_node_1, p_ifm_ff2_node_1);
+				}
+
+				/* Watchdog Server */
+				run_watchdog(c_watchdog_node_1, p_ifm_wd_tick_node_1, p_ifm_shared_leds_wden_node_1);
+
+				/* Hall Server */
+				{
+					hall_par hall_params;
+					init_hall_param(hall_params);
+					run_hall(c_hall_p1_node_1, c_hall_p2_node_1, c_hall_p3_node_1, c_hall_p4_node_1, c_hall_p5_node_1, c_hall_p6_node_1, p_ifm_hall_node_1, hall_params); // channel priority 1,2..5
+				}
+
+				/* QEI Server */
+
+				{
+					qei_par qei_params;
+					init_qei_param(qei_params);
+					run_qei(c_qei_p1_node_1, c_qei_p2_node_1, c_qei_p3_node_1, c_qei_p4_node_1, c_qei_p5_node_1, c_qei_p6_node_1, p_ifm_encoder_node_1, qei_params);  		 // channel priority 1,2..5
+				}
+
+			}
+		}
+
+	}
+
+	return 0;
+}

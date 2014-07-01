@@ -1,0 +1,161 @@
+// Copyright (c) 2011, XMOS Ltd, All rights reserved
+// This software is freely distributable under a derivative of the
+// University of Illinois/NCSA Open Source License posted in
+// LICENSE.txt and at <http://github.xcore.com/>
+
+#include <platform.h>
+#include <xs1.h>
+#include <print.h>
+#include <stdlib.h>
+#include <syscall.h>
+#include <xs1.h>
+#include <stdio.h>
+#include "pwm_singlebit_port.h"
+
+// Bit mapping of 4-bit A4935 config port
+#define A4935_BIT_ESF  0x8
+#define A4935_BIT_RSTN 0x4
+#define A4935_BIT_PWML 0x2
+#define A4935_BIT_PWMH 0x1
+
+#define USEC_FAST 100
+#define MSEC_FAST 100000
+#define SEC_FAST  100000000
+
+#define A4935_AFTER_RESET_DELAY (200 * MSEC_FAST/*TICKS_MS*/) // 200ms
+
+on stdcore[3]: out port p_ifm_coastn = XS1_PORT_1G;
+on stdcore[3]: out port p_ifm_esf_rstn_pwml_pwmh = XS1_PORT_4F;
+
+on stdcore[3]: out buffered port:32 p_ifm_h_a =  XS1_PORT_1K;
+on stdcore[3]: out buffered port:32 p_ifm_h_c = XS1_PORT_1M;
+on stdcore[3]: out buffered port:32 p_ifm_l_a = XS1_PORT_1L;
+on stdcore[3]: out buffered port:32 p_ifm_l_c = XS1_PORT_1N;
+
+on stdcore[3] : out buffered port:32 rgPorts[] = { XS1_PORT_1K};//,  XS1_PORT_1M };
+
+on stdcore[3]: clock clk = XS1_CLKBLK_1;
+
+//#define MILLISECONDS 100000
+//#define PERIOD 100 * MILLISECONDS
+#define RESOLUTION 256
+#define PERIOD (RESOLUTION*20)
+#define NUM_PORTS 1
+#define TIMESTEP 10
+
+enum { COUNTUP, COUNTDOWN };
+
+void a4935_init(unsigned configuration)
+{
+  timer timer1;
+  unsigned time1;
+
+  configuration |= A4935_BIT_ESF; // add enable_stop_on_fault to config bits
+
+  // set config pins and trigger reset
+  p_ifm_esf_rstn_pwml_pwmh <: configuration;
+
+  timer1 :> time1;
+  //timer1 when timerafter(time1 + A4935_AFTER_RESET_DELAY) :> time1;
+  timer1 when timerafter(time1 + (4 * USEC_FAST/*TICKS_US*/)) :> time1; // hold reset for at least 3.5us
+
+  /* enable pull-ups for ff1 and ff2, as these are open-drain outputs
+     and configure as inputs as long as we are just waiting for an
+     error to occur */
+  //configure_in_port_no_ready(p_ff1);
+  //configure_in_port_no_ready(p_ff2);
+
+  // release reset
+  p_ifm_esf_rstn_pwml_pwmh <: ( A4935_BIT_RSTN | configuration );
+
+  // pause before enabling FETs after reset
+  timer1 when timerafter(time1 + A4935_AFTER_RESET_DELAY) :> time1;
+
+  // enable FETs
+  p_ifm_coastn <: 1;
+
+}
+
+void enable_motor_power(void)
+{
+	  const unsigned t_delay = 300*USEC_FAST;
+	  timer t;
+	  unsigned ts;
+
+	  t when timerafter (ts + t_delay) :> ts;
+
+	  a4935_init(A4935_BIT_PWML | A4935_BIT_PWMH);
+	  t when timerafter (ts + t_delay) :> ts;
+}
+
+void init_dc100()
+{
+	enable_motor_power();
+
+	p_ifm_h_a <: 0;
+	p_ifm_h_c <: 0;
+
+	p_ifm_l_a <:0;
+	p_ifm_l_c <:1;
+}
+
+
+void updateValues(unsigned int values[], unsigned int direction[]) {
+	for (unsigned int i = 0; i < NUM_PORTS; ++i) {
+		switch (direction[i]) {
+		case COUNTUP:
+			if (values[i] == RESOLUTION) {
+				direction[i] = COUNTDOWN;
+				--values[i];
+			} else {
+				++values[i];
+			}
+			break;
+
+		case COUNTDOWN:
+			if (values[i] == 0) {
+				direction[i] = COUNTUP;
+				++values[i];
+			} else {
+				--values[i];
+			}
+			break;
+		}
+	}
+}
+
+void client(chanend c) {
+    timer t;
+    int time;
+
+    unsigned int values[NUM_PORTS] = {0};
+    unsigned int direction[NUM_PORTS] = {COUNTUP};
+
+    t :> time;
+    time += PERIOD;
+
+
+
+    while (1) {
+        t when timerafter (time) :> void;
+        updateValues(values, direction);
+        pwmSingleBitPortSetDutyCycle(c, values, NUM_PORTS);
+        //printf("Time = %d values %d.. %d \n",time,values[0], values[1]);
+        time += PERIOD;
+    }
+}
+
+int main() {
+    chan c;
+
+    par {
+
+        on stdcore[0] : client(c);
+        on stdcore[3] :
+        				{init_dc100();
+           				pwmSingleBitPort(c, clk, rgPorts, NUM_PORTS, RESOLUTION, TIMESTEP,1);
+        				}
+    }
+    return 0;
+}
+

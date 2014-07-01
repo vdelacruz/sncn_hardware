@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 1 resources to &apos;app_pwm_singlebit_port_demo&apos;" description="Move 1 resources to &apos;app_pwm_singlebit_port_demo&apos;" destination="/app_pwm_singlebit_port_demo" element1="/sc_sncn_dual-drive/src/SOMANET-C22.xn" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1397485222535" updateReferences="true"/>
+</session>

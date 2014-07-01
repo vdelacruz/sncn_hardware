@@ -1,0 +1,10 @@
+
+**** Build of configuration Debug for project sc_sncn_dual-drive ****
+
+xmake CONFIG=Debug all 
+Creating dependencies for main.xc
+Compiling main.xc
+Updating eclipse config
+No modules used.
+Creating dualdrive_Debug.xe
+Build Complete

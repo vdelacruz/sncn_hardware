@@ -1,0 +1,6 @@
+
+**** Build of configuration Debug for project app_rs485 ****
+
+xmake CONFIG=Debug all 
+Using modules: module_rs485 module_uart_fast_tx
+Build Complete

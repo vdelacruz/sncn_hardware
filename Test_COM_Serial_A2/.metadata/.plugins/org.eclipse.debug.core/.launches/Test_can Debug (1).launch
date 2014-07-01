@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.xmos.cdt.core.XFlashLaunch">
+<stringAttribute key="com.xmos.cdt.device_id" value="dvhJHIYR"/>
+<booleanAttribute key="com.xmos.cdt.display_command_in_console" value="false"/>
+<stringAttribute key="com.xmos.cdt.target_name" value="XMOS XTAG-2 connected to L[0..3] [dvhJHIYR]"/>
+<booleanAttribute key="com.xmos.cdt.xflash_dump_image" value="false"/>
+<stringAttribute key="com.xmos.cdt.xflash_dump_image_text" value=""/>
+<booleanAttribute key="com.xmos.cdt.xflash_key_file" value="false"/>
+<stringAttribute key="com.xmos.cdt.xflash_key_file_text" value=""/>
+<stringAttribute key="com.xmos.cdt.xflash_other_text" value=""/>
+<booleanAttribute key="com.xmos.cdt.xflash_search_limit" value="false"/>
+<stringAttribute key="com.xmos.cdt.xflash_search_limit_text" value=""/>
+<booleanAttribute key="com.xmos.cdt.xflash_spi_spec_file" value="false"/>
+<stringAttribute key="com.xmos.cdt.xflash_spi_spec_file_text" value=""/>
+<stringAttribute key="org.eclipse.cdt.launch.COREFILE_PATH" value=""/>
+<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="bin\Debug\app_can_demo_Debug.xe"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="Test_can"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value="com.xmos.cdt.toolchain.95519801"/>
+<booleanAttribute key="org.eclipse.cdt.launch.use_terminal" value="true"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/Test_can"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+</launchConfiguration>

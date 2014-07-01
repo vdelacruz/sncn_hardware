@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench version="2.0">
+<workbenchAdvisor/>
+<window height="768" maximized="true" width="1012" x="591" y="63">
+<fastViewData fastViewLocation="1024"/>
+<perspectiveBar>
+<itemSize x="160"/>
+</perspectiveBar>
+<coolbarLayout locked="0">
+<coolItem id="group.file" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="92" y="22"/>
+<coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="com.xmos.cdt.ui.XCEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="com.xmos.cdt.ui.edit.actions" itemType="typeToolBarContribution" x="99" y="22"/>
+<coolItem id="com.xmos.cdt.ui.editors.makefile.AppLvlMakefileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.xmos.cdt.ui.editors.makefile.TopLvlMakefileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.xmos.cdt.ui.editors.xn.ModifiableXNEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.xmos.cdt.ui.editors.xn.ReadOnlyXNEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.cdt.ui.buildConfigActionSet" itemType="typeToolBarContribution" x="52" y="22"/>
+<coolItem id="org.eclipse.cdt.ui.editor.CEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="167" y="22"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="40" y="30"/>
+<coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="com.xmos.cdt.ui.help.toolbar" itemType="typeToolBarContribution" x="61" y="22"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="91" y="22"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.cdt.make.editor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="group.help" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
+</coolbarLayout>
+<page aggregateWorkingSetId="Aggregate for window 1397485515920" focus="true" label="Workspace - XMOS Edit">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor activePart="true" focus="true" id="com.xmos.cdt.ui.XCEditor" name="app_can_demo.xc" partName="app_can_demo.xc" path="C:/Users/Victor/Desktop/Test_COM_Serial/Test_can/src/app_can_demo.xc" title="app_can_demo.xc" tooltip="Test_can/src/app_can_demo.xc" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test_can/src/app_can_demo.xc"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="306" selectionTopPixel="0"/>
+</editor>
+</editors>
+<views>
+<view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="0" CommonNavigator.LINKING_ENABLED.delayed="0" org.eclipse.cdt.ui.cview.groupincludes="false" org.eclipse.cdt.ui.cview.groupmacros="false" org.eclipse.cdt.ui.editor.CUChildren="true" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+</view>
+<view id="com.xmos.devcolumn.ui.views.devcolumn.DevColumn" partName="Developer Column">
+<viewState/>
+</view>
+<view id="com.xmos.xscope.ui.views.xscope.XScope" partName="Real-Time Scope">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.ProblemView" partName="Problems">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>&#x0A;<category IMemento.internal.id="Warnings"/>
+<category IMemento.internal.id="Errors"/>
+</expanded>
+<columnWidths org.eclipse.ui.ide.locationField="0" org.eclipse.ui.ide.markerType="0" org.eclipse.ui.ide.pathField="0" org.eclipse.ui.ide.resourceField="0" org.eclipse.ui.ide.severityAndDescriptionField="0"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="com.xmos.xsoftip.ui.views.xsoftip.XSoftIPView" partName="xSOFTip">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.completionField" categoryGroup="none" markerContentGenerator="org.eclipse.ui.ide.tasksGenerator" partName="Tasks">
+<columnWidths org.eclipse.ui.ide.completionField="40" org.eclipse.ui.ide.descriptionField="353" org.eclipse.ui.ide.locationField="73" org.eclipse.ui.ide.markerType="108" org.eclipse.ui.ide.pathField="143" org.eclipse.ui.ide.priorityField="19" org.eclipse.ui.ide.resourceField="108"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.completionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.priorityField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.descriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+</views>
+<perspectives activePart="org.eclipse.ui.navigator.ProjectExplorer" activePerspective="com.xmos.cdt.ui.XdeEditPerspective">
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="com.xmos.cdt.ui.XdeEditPerspective" id="com.xmos.cdt.ui.XdeEditPerspective" label="XMOS Edit"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="com.xmos.cdt.ui.edit.actions"/>
+<alwaysOnActionSet id="org.eclipse.ui.dz_com.xmos.cdt.launch.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.ui.buildConfigActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="com.xmos.cdt.ui.views.quickstart.QuickStart"/>
+<show_view_action id="com.xmos.cdt.ui.views.binary.Binary"/>
+<show_view_action id="com.xmos.xvcd.views.signals.Signals"/>
+<show_view_action id="com.xmos.xvcd.views.waves.Waves"/>
+<show_view_action id="com.xmos.xprobe.ui.views.xprobe.XProbe"/>
+<show_view_action id="com.xmos.xscope.ui.views.xscope.XScope"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<new_wizard_action id="com.xmos.cdt.ui.xdeproject.XdeProjectWizard"/>
+<new_wizard_action id="com.xmos.cdt.ui.xdeprojectlegacy.XdeProjectLegacyWizard"/>
+<new_wizard_action id="com.xmos.cdt.ui.xdeapplication.XdeApplicationWizard"/>
+<new_wizard_action id="com.xmos.cdt.ui.xdemodule.XdeModuleWizard"/>
+<new_wizard_action id="com.xmos.cdt.ui.xdesourcefile.XdeSourceFileWizard"/>
+<perspective_action id="org.eclipse.debug.ui.DebugPerspective"/>
+<perspective_action id="com.xmos.xta.ui.XtaPerspective"/>
+<hide_menu_item_id id="org.eclipse.ui.internal.ide.actions.BuildSetMenu"/>
+<hide_menu_item_id id="org.eclipse.equinox.p2.ui.sdk.update"/>
+<hide_menu_item_id id="org.eclipse.cdt.ui.prjmenu"/>
+<hide_toolbar_item_id id="org.eclipse.ui.workbench.navigate"/>
+<hide_toolbar_item_id id="org.eclipse.ui.file.print"/>
+<hide_toolbar_item_id id="org.eclipse.search.searchActionSet"/>
+<hide_toolbar_item_id id="newWizardDropDown"/>
+<hide_toolbar_item_id id="org.eclipse.ui.externaltools.ExternalToolMenuDelegateToolbar"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<hide_toolbar_item_id id="org.eclipse.cdt.ui.buildConfigToolbarAction"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
+<view id="com.xmos.xsoftip.ui.views.xsoftip.XSoftIPView"/>
+<view id="com.xmos.devcolumn.ui.views.devcolumn.DevColumn"/>
+<view id="com.xmos.xscope.ui.views.xscope.XScope"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="topLeft">
+<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<page content="com.xmos.xvcd.views.signals.Signals" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="topLeft">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.20421393" ratioLeft="378" ratioRight="1473" relationship="2" relative="topLeft"/>
+<info folder="true" part="bottom" ratio="0.75" ratioLeft="498" ratioRight="166" relationship="4" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="com.xmos.cdt.ui.views.binary.Binary" label="LabelNotFound"/>
+<page content="com.xmos.xvcd.views.waves.Waves" label="LabelNotFound"/>
+<page content="com.xmos.xprobe.ui.views.xprobe.XProbe" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info part="org.eclipse.egit.ui.RepositoriesView" ratio="0.5" ratioLeft="379" ratioRight="379" relationship="2" relative="bottom"/>
+<info folder="true" part="topRight" ratio="0.5" ratioLeft="379" ratioRight="379" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="com.xmos.cdt.ui.views.quickstart.QuickStart" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1d088154" ratio="0.5603272" ratioLeft="548" ratioRight="430" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<page content="com.xmos.xsoftip.ui.views.xsoftip.XSoftIPView" label="xSOFTip"/>
+<page content="com.xmos.devcolumn.ui.views.devcolumn.DevColumn" label="Developer Column"/>
+<page content="com.xmos.xscope.ui.views.xscope.XScope" label="Real-Time Scope"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="6"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" path="/apps/test_rs485/src/app_rs485.xc"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" path="/apps/test_dual_brushed_dc-velocity-ctrl_rs485/src/test_dual_brushed_dc-velocity-ctrl_rs485.xc"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.editors.makefile.TopLvlMakefileEditor" path="/apps/Makefile"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" path="/Host/src/Host.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" path="/module_rs485/src/rs485.xc"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" path="/apps/test_lin/src/app_lin_demo.xc"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/apps/test_lin/src/lin_conf.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" path="/test_rs485/test_rs485/src/app_rs485.xc"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" path="/test_lin/src/app_lin_demo.xc"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" path="/test_lin/Makefile"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" path="/Test_can/Makefile"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" path="/test_lin/Makefile"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" path="/Test_can/src/app_can_demo.xc"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" path="/test_lin/src/app_lin_demo.xc"/>
+</editors>
+<item historyLabel="XMOS Project Makefile Editor" index="2"/>
+<item historyLabel="app_rs485.xc" index="0">
+<position/>
+</item>
+<item historyLabel="test_dual_brushed_dc-velocity-ctrl_rs485.xc" index="1">
+<position info="not_deleted" x="215" y="0"/>
+</item>
+<item historyLabel="app_rs485.xc" index="0">
+<position/>
+</item>
+<item historyLabel="Host.c" index="3">
+<position info="not_deleted" x="358" y="0"/>
+</item>
+<item historyLabel="app_rs485.xc" index="0">
+<position/>
+</item>
+<item historyLabel="rs485.xc" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="app_rs485.xc" index="0">
+<position/>
+</item>
+<item historyLabel="app_rs485.xc" index="0">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="app_rs485.xc" index="0">
+<position info="not_deleted" x="2658" y="0"/>
+</item>
+<item historyLabel="app_rs485.xc" index="0">
+<position info="not_deleted" x="2467" y="73"/>
+</item>
+<item historyLabel="app_rs485.xc" index="0">
+<position info="not_deleted" x="665" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="5">
+<position info="not_deleted" x="61" y="0"/>
+</item>
+<item historyLabel="lin_conf.h" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="5">
+<position info="not_deleted" x="294" y="0"/>
+</item>
+<item historyLabel="app_rs485.xc" index="7">
+<position/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="6023" y="0"/>
+</item>
+<item historyLabel="app_rs485.xc" index="7">
+<position info="not_deleted" x="484" y="93"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="518" y="0"/>
+</item>
+<item historyLabel="app_rs485.xc" index="7">
+<position info="not_deleted" x="484" y="93"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="518" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="662" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="5949" y="56"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="424" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="5980" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="6425" y="75"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="642" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="689" y="0"/>
+</item>
+<item historyLabel="Makefile" index="9">
+<position info="not_deleted" x="228" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="689" y="0"/>
+</item>
+<item historyLabel="Makefile" index="9">
+<position info="not_deleted" x="219" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="689" y="0"/>
+</item>
+<item historyLabel="Makefile" index="9">
+<position info="not_deleted" x="219" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="689" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="6023" y="0"/>
+</item>
+<item historyLabel="Makefile" index="10">
+<position/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="8">
+<position info="not_deleted" x="4883" y="0"/>
+</item>
+<item historyLabel="Makefile" index="11">
+<position info="not_deleted" x="219" y="0"/>
+</item>
+<item historyLabel="Makefile" index="10">
+<position/>
+</item>
+<item historyLabel="app_can_demo.xc" index="12">
+<position info="not_deleted" x="1018" y="0"/>
+</item>
+<item historyLabel="Makefile" index="10">
+<position/>
+</item>
+<item historyLabel="app_can_demo.xc" index="12">
+<position info="not_deleted" x="1018" y="0"/>
+</item>
+<item historyLabel="Makefile" index="10">
+<position/>
+</item>
+<item historyLabel="app_can_demo.xc" index="12">
+<position info="not_deleted" x="1018" y="0"/>
+</item>
+<item historyLabel="Makefile" index="10">
+<position/>
+</item>
+<item historyLabel="app_can_demo.xc" index="12">
+<position info="not_deleted" x="718" y="0"/>
+</item>
+<item historyLabel="Makefile" index="10">
+<position info="not_deleted" x="518" y="0"/>
+</item>
+<item historyLabel="app_can_demo.xc" index="12">
+<position info="not_deleted" x="1281" y="0"/>
+</item>
+<item historyLabel="app_lin_demo.xc" index="13">
+<position info="not_deleted" x="0" y="598"/>
+</item>
+<item active="true" historyLabel="app_can_demo.xc" index="12">
+<position info="not_deleted" x="1281" y="0"/>
+</item>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+<trimLayout>
+<trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
+</trimArea>
+<trimArea IMemento.internal.id="1024">
+<trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
+<trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+</trimArea>
+</trimLayout>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" name="app_lin_demo.xc" tooltip="test_lin/src/app_lin_demo.xc">
+<persistable path="/test_lin/src/app_lin_demo.xc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" name="Makefile" tooltip="Test_can/Makefile">
+<persistable path="/Test_can/Makefile"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" name="app_can_demo.xc" tooltip="Test_can/src/app_can_demo.xc">
+<persistable path="/Test_can/src/app_can_demo.xc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" name="Makefile" tooltip="test_lin/Makefile">
+<persistable path="/test_lin/Makefile"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" name="app_rs485.xc" tooltip="test_rs485/test_rs485/src/app_rs485.xc">
+<persistable path="/test_rs485/test_rs485/src/app_rs485.xc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="lin_conf.h" tooltip="apps/test_lin/src/lin_conf.h">
+<persistable path="/apps/test_lin/src/lin_conf.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" name="app_lin_demo.xc" tooltip="apps/test_lin/src/app_lin_demo.xc">
+<persistable path="/apps/test_lin/src/app_lin_demo.xc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" name="app_rs485.xc" tooltip="apps/test_rs485/src/app_rs485.xc">
+<persistable path="/apps/test_rs485/src/app_rs485.xc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" name="rs485.xc" tooltip="module_rs485/src/rs485.xc">
+<persistable path="/module_rs485/src/rs485.xc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" name="Host.c" tooltip="Host/src/Host.c">
+<persistable path="/Host/src/Host.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.editors.makefile.TopLvlMakefileEditor" name="Makefile" tooltip="apps/Makefile">
+<persistable path="/apps/Makefile"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.XCEditor" name="test_dual_brushed_dc-velocity-ctrl_rs485.xc" tooltip="apps/test_dual_brushed_dc-velocity-ctrl_rs485/src/test_dual_brushed_dc-velocity-ctrl_rs485.xc">
+<persistable path="/apps/test_dual_brushed_dc-velocity-ctrl_rs485/src/test_dual_brushed_dc-velocity-ctrl_rs485.xc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="bldc_motor_config.h" tooltip="apps/test_dual_brushed_dc-velocity-ctrl_rs485/config/motor/bldc_motor_config.h">
+<persistable path="/apps/test_dual_brushed_dc-velocity-ctrl_rs485/config/motor/bldc_motor_config.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.xmos.cdt.ui.editors.makefile.AppLvlMakefileEditor" name="Makefile" tooltip="apps/test_dual_brushed_dc-velocity-ctrl_rs485/Makefile">
+<persistable path="/apps/test_dual_brushed_dc-velocity-ctrl_rs485/Makefile"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="unistd.h" tooltip="/usr/include/unistd.h">
+<persistable path="/usr/include/unistd.h" project="Host"/>
+</file>
+</mruList>
+</workbench>

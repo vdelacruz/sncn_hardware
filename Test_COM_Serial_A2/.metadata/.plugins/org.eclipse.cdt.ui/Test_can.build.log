@@ -1,0 +1,6 @@
+
+**** Build of configuration Debug for project Test_can ****
+
+xmake CONFIG=Debug all 
+Using modules: module_can module_mutual_thread_comm
+Build Complete

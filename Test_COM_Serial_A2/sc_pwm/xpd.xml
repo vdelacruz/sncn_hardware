@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<xpd>
+    <components>
+        <component name = "Tutorial Example LED PWM Driver Component" type = "component" buildresults_path = "module_pwm_tutorial_example/.module_pwm_tutorial_example.buildinfo" scope = "Example" path = "module_pwm_tutorial_example" metainfo_path = "module_pwm_tutorial_example/module_pwm_tutorial_example.metainfo" local = "false" id = "module_pwm_tutorial_example" description = "Simple PWM driver component designed for xTimeComposer Tutorial">
+            <board>XA-SK-GPIO</board>
+            <keyword>PWM</keyword>
+            <keyword>tutorial</keyword>
+            <keyword>LED</keyword>
+        </component>
+    </components>
+    <description>Various PWM driver components for single bit and multi bit ports</description>
+    <location>git@github.com:xcore/sc_pwm.git</location>
+    <name>sc_pwm</name>
+    <maintainer>djpwilk</maintainer>
+    <partnumber>XM-001842-DH</partnumber>
+    <release parenthash = "2f7213dfb0234a7cda88d5b3584e301e4d9edcb3" version = "1.0.0alpha0" githash = "56b734e3ac6af178ff0692238c7f2e391b0d3765"></release>
+    <release parenthash = "0e91ddce77b61f061bcbdc44710400d55a13cf1b" version = "1.0.0alpha1" githash = "4e7eafbbbc0c48b75184b5cee64bec1990117d31"></release>
+    <release parenthash = "39bcbdb423cccf3b2c6d540e6890fbefc64c1400" version = "1.0.0alpha2" githash = "90c10781cd7d1a7f82543ffe2ddb765d8620e191"></release>
+    <release parenthash = "90c10781cd7d1a7f82543ffe2ddb765d8620e191" version = "1.0.0rc0"></release>
+    <subpartnumber>XM-001843-SM</subpartnumber>
+    <vendor>XMOS</vendor>
+    <xcore_repo>sc_pwm.git</xcore_repo>
+    <xpd_version>1.0</xpd_version>
+    <xsoftip_exclude>module_pwm_common</xsoftip_exclude>
+    <xsoftip_exclude>module_pwm_multibit_port</xsoftip_exclude>
+    <xsoftip_exclude>module_pwm_singlebit_port</xsoftip_exclude>
+    <xsoftip_exclude>module_pwm_symmetrical</xsoftip_exclude>
+    <xsoftip_exclude>module_pwm_multibit_fast</xsoftip_exclude>
+    <xsoftip_exclude>module_pwm_singlebit_bldc</xsoftip_exclude>
+    <xsoftip_exclude>module_pwm_singlebit_simple</xsoftip_exclude>
+    <xsoftip_exclude>app_pwm_multibit_fast_demo</xsoftip_exclude>
+    <xsoftip_exclude>app_pwm_multibit_port_test</xsoftip_exclude>
+    <xsoftip_exclude>app_pwm_singlebit_port_test</xsoftip_exclude>
+    <xsoftip_exclude>app_pwm_multibit_port_demo</xsoftip_exclude>
+    <xsoftip_exclude>app_pwm_singlebit_port_demo</xsoftip_exclude>
+    <xsoftip_exclude>app_pwm_singlebit_simple_demo</xsoftip_exclude>
+    <xsoftip_exclude>app_pwm_tutorial_example</xsoftip_exclude>
+    <xsoftip_exclude>testbench_multibit_fast</xsoftip_exclude>
+    <xsoftip_exclude>testbench_singlebit_simple</xsoftip_exclude>
+    <xsoftip_exclude>plugin_pwm</xsoftip_exclude>
+    <xsoftip_exclude>app_pwm_tutorial_simulator</xsoftip_exclude>
+</xpd>

@@ -1,0 +1,58 @@
+-------------------------------------------------------------------------------
+-- Descriptive metadata
+-------------------------------------------------------------------------------
+
+componentName = "Simple UART TX"
+componentFullName = ""
+alternativeNames = { }
+componentDescription = "Stripped down very simple, fast Uart TX with limited features."
+componentVersion = "1v0"
+
+-------------------------------------------------------------------------------
+-- Parameter descriptions.
+-------------------------------------------------------------------------------
+
+configPoints = {}
+
+derivedValues = {}
+
+ports = {
+  p_uart_tx = {
+    short   = "UART TX",
+    long    = "UART TX Pin",
+    help    = "",
+    width   = 1
+  },
+}
+
+channels = {
+  c_tx_uart = {
+    short = "TX channel",
+    type = "streaming",
+    long  = "Channel for the client to send TX data to the Uart transmitter",
+    help  = "",
+  },
+}        
+
+function getConfigStatus()
+  local status = "Valid Configuration"
+  local issues = {}
+  return status, issues
+end
+            
+-------------------------------------------------------------------------------
+-- Source generation functions
+-------------------------------------------------------------------------------
+
+generatedCode = {
+  includes = { 
+    "uart_fast_tx.h"
+  },
+  globals = [[
+    out port p_uart${swblock.id}_tx = XS1_PORT_1A;
+  ]],
+  body = [[
+    uart_tx_fast(p_uart_tx, c_tx_uart, 10);
+  ]]
+}
+

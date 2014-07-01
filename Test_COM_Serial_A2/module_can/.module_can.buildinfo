@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allbuildresults>
+<buildresults component="module_can" packagename="xm-local-sc_can(1.0.1rc0)" packageversion="1.0.1rc0" toolsversion="latest">
+<buildresult>
+<configuration>
+<parameter id="can_frame_buf_size" value="16"/>
+<parameter id="can_max_filters" value="2"/>
+<parameter id="can_clock_div" value="2"/>
+<parameter id="can_prop_seg" value="8"/>
+<parameter id="can_phase_seg1" value="8"/>
+<parameter id="can_phase_seg2" value="8"/>
+</configuration>
+<resourceusage>
+<resourceusageitem id="cores" value="1"/>
+<resourceusageitem id="memory" value="0"/>
+<resourceusageitem id="codememory" value="3690"/>
+<resourceusageitem id="datamemory" value="538"/>
+<resourceusageitem id="ports1bit" value="2"/>
+<resourceusageitem id="ports4bit" value="0"/>
+<resourceusageitem id="ports8bit" value="0"/>
+<resourceusageitem id="ports16bit" value="0"/>
+<resourceusageitem id="ports32bit" value="0"/>
+<resourceusageitem id="clocks" value="1"/>
+<resourceusageitem id="chanends" value="1"/>
+<resourceusageitem id="timers" value="2"/>
+</resourceusage>
+</buildresult>
+</buildresults>
+</allbuildresults>

@@ -1,0 +1,50 @@
+#ifndef DUAL_DRIVE_H_
+#define DUAL_DRIVE_H_
+
+#include <xs1.h>
+#include <platform.h>
+
+#ifdef __XC__
+
+/**
+ * This contains the values for the command channel for the dual_drive function
+ */
+typedef enum
+{
+	DRIVE_STOP, //!< Stops the motors , does not require any additional values
+	DRIVE_FORWARD, //!< Forward driving Requires two additional values for the speed of left and right motor
+	DRIVE_BACKWARD,//!< Backward driving Requires two additional values for the speed of left and right motor
+
+}dual_drive_mode_t;
+
+typedef enum
+{
+	DUAL_DRIVE_SIDE_TURN=0,
+	DUAL_DRIVE_SIDE_LEFT=0,
+	DUAL_DRIVE_SIDE_RIGHT,
+}dual_drive_side;
+
+
+/**
+ * Struct for storing the one bit ports for the H-bridges
+ */
+typedef struct
+{
+	unsigned pwm_period;
+	clock clk;
+	unsigned clk_dividend;
+	unsigned clk_divisor;
+	out port pins[4]; //High AC, LowAC
+}bldc_bridge_t;
+
+/**
+ * Dual drive function
+ * @param bridge Pin Data for the bridge pins
+ * @param ctrl Control channel for sending commands
+ */
+void dual_drive(bldc_bridge_t &bridge, chanend ctrl);
+
+
+#endif /* __XC__ */
+
+#endif /* DUAL_DRIVE_H_ */

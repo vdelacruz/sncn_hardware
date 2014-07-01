@@ -1,0 +1,160 @@
+
+
+#include <dual_drive.h>
+#include <stdio.h>
+
+
+
+
+#define MODE_CHANGE 1
+#define MODE_NO_CHANGE 0
+#define HIGH 0
+#define LOW 3
+
+
+#pragma unsafe arrays
+void dual_drive(bldc_bridge_t &bridge, chanend ctrl)
+{
+	dual_drive_mode_t mode=DUAL_DRIVE_STOP;
+	unsigned inMode=DUAL_DRIVE_STOP;
+	unsigned speed;
+	unsigned time;
+	unsigned d;
+
+	unsigned edgetime;
+	unsigned pwm_pin[2]={0,0};
+	unsigned spd_order[2];
+
+
+	printf("dual_drive...\n");
+
+	//#####################
+	// Clock configuration
+	//#####################
+	configure_clock_rate(bridge.clk,bridge.clk_dividend,bridge.clk_divisor);
+	for (d = 0; d < 6; ++d) {
+	configure_out_port(bridge.pins[d],bridge.clk,0);
+	}
+	start_clock(bridge.clk);
+
+
+	while(1)
+	{
+		//##########################
+		// Getting new information
+		//##########################
+		select
+		{
+			case ctrl :> inMode:
+			{
+				switch(inMode)
+				{
+				case DUAL_DRIVE_BACKWARD:
+				case DUAL_DRIVE_FORWARD:
+					ctrl:>speed;
+					break;
+				case DUAL_DRIVE_STOP:
+					break;
+				}
+			}
+			break;
+			default:
+				break;
+		}
+
+		//##########################
+		// Check if period in range
+		//##########################
+
+		if(speed>bridge.pwm_period)
+		{
+			speed=bridge.pwm_period;
+		}
+
+
+		//#######################
+		// Doing a mode change
+		//#######################
+		if(inMode != mode)
+		{
+
+			unsigned pin;
+			printf("Mode Change!!\n");
+
+			//##########################
+			// Init pins and port times
+			//##########################
+
+			for (d = 0; d < 3; ++d)
+			{
+				bridge.pins[LOW+d]<:0;
+				bridge.pins[HIGH+d]<:0;
+			}
+
+
+			//init time
+			bridge.pins[0] <: 0 @time;
+
+			//###################
+			// Init static pins
+			//###################
+			switch(inMode)
+			{
+			case DUAL_DRIVE_FORWARD:
+			case DUAL_DRIVE_BACKWARD:
+
+				if(inMode == DUAL_DRIVE_FORWARD)
+				{
+					printf("Forward...\n");
+					bridge.pins[HIGH+1]<:1;
+					pwm_pin[0]=LOW+0;
+					pwm_pin[1]=LOW+2;
+				}
+				else //Backward
+				{
+					printf("Backward...\n");
+					bridge.pins[LOW+1]<:1;
+					pwm_pin[0]=HIGH+0;
+					pwm_pin[1]=HIGH+2;
+				}
+				printf("PWM Pins %i, %i\n",pwm_pin[0], pwm_pin[1]);
+
+
+				break;
+
+			default:
+				break;
+			}
+
+			mode=inMode;
+		}
+
+		//################
+		// Motor Control
+		//################
+		switch(mode)
+		{
+			case DUAL_DRIVE_FORWARD:
+			case DUAL_DRIVE_BACKWARD:
+				time += bridge.pwm_period;
+				//RISE
+				if(speed[order] != 0) bridge.pins[pwm_pin[order]]@time<:1;
+				if(speed[!order] != 0) bridge.pins[pwm_pin[!order]]@time<:1;
+
+				for (d = 0; d < 2; ++d)
+					edgetime[d] = time + speed[d];
+
+				//FALL
+				if(bridge.pwm_period != speed[order])
+					bridge.pins[pwm_pin[order]] @ edgetime[order] <:0;
+
+				if(bridge.pwm_period != speed[!order])
+					bridge.pins[pwm_pin[!order]] @ edgetime[!order] <:0;
+				break;
+
+			case DUAL_DRIVE_STOP:
+				break;
+		}
+
+	}
+}

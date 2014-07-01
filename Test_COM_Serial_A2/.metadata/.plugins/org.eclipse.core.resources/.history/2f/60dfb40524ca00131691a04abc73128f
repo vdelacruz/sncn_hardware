@@ -1,0 +1,16 @@
+
+/**
+ * \file nodeconfig.h
+ * \brief Node config file
+ * \author Martin Schwarz <mschwarz@synapticon.com>
+ */
+
+
+#ifndef __NODECONFIG_H__
+#define __NODECONFIG_H__
+
+
+#define SOMANET_CORE null
+#define SOMANET_COM null
+#define SOMANET_IFM dc100-rev-b-dual-node
+#endif

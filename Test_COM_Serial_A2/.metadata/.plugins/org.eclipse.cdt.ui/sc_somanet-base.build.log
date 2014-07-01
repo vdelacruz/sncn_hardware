@@ -1,0 +1,5 @@
+
+**** Build of configuration Debug for project sc_somanet-base ****
+
+xmake CONFIG=Debug all 
+xmake: Nothing to be done for `all'.

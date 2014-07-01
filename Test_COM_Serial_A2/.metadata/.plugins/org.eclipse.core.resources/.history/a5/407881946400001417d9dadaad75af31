@@ -1,0 +1,191 @@
+// Copyright (c) 2011, XMOS Ltd., All rights reserved
+// This software is freely distributable under a derivative of the
+// University of Illinois/NCSA Open Source License posted in
+// LICENSE.txt and at <http://github.xcore.com/>
+
+/*===========================================================================
+
+ Test COM_Serial Rev. A.2. Synapticon GbmH
+ Execute Putty as a super user.
+ Open Serial Communication. Check Baud Rate, Parity etc.
+ Build and Run the program.
+
+
+
+ ===========================================================================*/
+
+
+
+/*===========================================================================
+ Filename: app_rs485.xc
+ Project : app_rs485
+ Author  : XMOS Ltd
+ Version : 1v0
+ Purpose : This file demostrates usage of RS485 component
+ -----------------------------------------------------------------------------
+
+ ===========================================================================*/
+
+
+
+/*---------------------------------------------------------------------------
+ include files
+ ---------------------------------------------------------------------------*/
+
+#include <xs1.h>
+#include <print.h>
+#include <platform.h>
+#include "rs485.h"
+
+/*---------------------------------------------------------------------------
+constants
+---------------------------------------------------------------------------*/
+
+#define DIR_BIT 3
+#define BAUD 115200
+#define DATA 8
+#define STOP 1
+#define PARITY RS485_PARITY_NONE
+#define TIMEOUT 10
+
+/*---------------------------------------------------------------------------
+ Port Declaration
+ ---------------------------------------------------------------------------*/
+
+on tile[0]: rs485_interface_t rs485_if =
+{
+        XS1_PORT_1J,
+        XS1_PORT_8B
+};
+
+rs485_config_t rs485_config =
+{
+  DIR_BIT,
+  BAUD,
+  DATA,
+  STOP,
+  PARITY,
+  TIMEOUT
+};
+
+int char2int(char c){
+    int q = (int)c;
+    q -= 48;
+    return q;
+}
+
+
+
+/** =========================================================================
+ * Consume
+ *
+ * application thread which communcicates with the RS485 component
+ *
+ * \param channel to rs485_run thread, channel communication from rs485_run thread
+ *
+ * \return None
+ *
+ **/
+void rs485application(chanend c_receive, chanend c_send)
+{
+  unsigned char receive_buffer[RS485_BUF_SIZE];
+  unsigned char starting_message[33] = "Testin Somanet COM_Serial A.2 RS-485 Communication\n";
+  unsigned length_of_data;
+  int i, j, velRight = 0, velLeft = 0;
+  rs485_send_packet(c_send, starting_message, 33);
+  while(1)
+  {
+    length_of_data=rs485_rx_buffer(c_receive,receive_buffer);
+
+    char c = receive_buffer[0];
+    switch(c){
+    case 'v':
+        //first parameter
+        velRight=0;
+
+        velRight += char2int(receive_buffer[2]) * 100000;
+        velRight += char2int(receive_buffer[3]) * 10000;
+        velRight += char2int(receive_buffer[4]) * 1000;
+        velRight += char2int(receive_buffer[5]) * 100;
+        velRight += char2int(receive_buffer[6]) * 10;
+        velRight += char2int(receive_buffer[7]);
+
+        //second parameter
+        velLeft = 0;
+        velLeft += char2int(receive_buffer[9]) * 100000;
+        velLeft += char2int(receive_buffer[10]) * 10000;
+        velLeft += char2int(receive_buffer[11]) * 1000;
+        velLeft += char2int(receive_buffer[12]) * 100;
+        velLeft += char2int(receive_buffer[13]) * 10;
+        velLeft += char2int(receive_buffer[14]);
+
+        printintln(velRight);
+        printintln(velLeft);
+
+        break;
+
+    case 'g':
+
+
+        break;
+    default:
+    break;
+    }
+  }
+}
+/*void application(chanend c_receive, chanend c_send)
+{
+  unsigned char receive_buffer[RS485_BUF_SIZE];
+  unsigned length_of_data;
+  int i;
+
+  int period = 100000000;
+  int time;
+  timer t;
+
+  t :> time;
+  while(1)
+  {
+    length_of_data=rs485_rx_buffer(c_receive,receive_buffer);
+
+
+    for(i=0; i< length_of_data; i++) {
+      receive_buffer[i]++;
+    }
+    if(!rs485_send_packet(c_send, receive_buffer, length_of_data))
+    {
+      printstr("TX error\n");
+    }
+if(receive_buffer[0]=='g'){
+
+    if(receive_buffer[1]=='p'){
+        rs485_send_packet(c_send,"f 600 23",8);
+    }else if(receive_buffer[1]=='v'){
+        rs485_send_packet(c_send,"f 1002 2001",11);
+    }
+     // select{
+       //   case t when timerafter(time) :> void:
+         //         time += period;
+
+         // break;
+      }
+
+}*/
+
+/**
+ * Top level main for multi-UART demonstration
+ */
+
+int main(void)
+{
+  chan c_send,c_receive;
+  par
+  {
+    on tile[0]: rs485application(c_receive, c_send);
+    on tile[0]: rs485_run(c_send, c_receive, rs485_if, rs485_config);
+  }
+  return 0;
+}
+
+
+

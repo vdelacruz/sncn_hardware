@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<allbuildresults>
+<buildresults component="module_lin" packagename="xm-local-sc_lin(1.0.1rc0)" packageversion="1.0.1rc0" toolsversion="latest">
+<buildresult>
+<configuration>
+<parameter id="lin_node_type" value="slave"/>
+<parameter id="lin_hw_platform" value="sliceKIT_ISBUS"/>
+<parameter id="lin_baud_rate" value="9600"/>
+</configuration>
+<resourceusage>
+<resourceusageitem id="cores" value="1"/>
+<resourceusageitem id="memory" value="0"/>
+<resourceusageitem id="codememory" value="2126"/>
+<resourceusageitem id="datamemory" value="142"/>
+<resourceusageitem id="ports1bit" value="0"/>
+<resourceusageitem id="ports4bit" value="2"/>
+<resourceusageitem id="ports8bit" value="0"/>
+<resourceusageitem id="ports16bit" value="0"/>
+<resourceusageitem id="ports32bit" value="0"/>
+<resourceusageitem id="clocks" value="0"/>
+<resourceusageitem id="chanends" value="1"/>
+<resourceusageitem id="timers" value="0"/>
+</resourceusage>
+</buildresult>
+<buildresult>
+<configuration>
+<parameter id="lin_node_type" value="master"/>
+<parameter id="lin_hw_platform" value="sliceKIT_ISBUS"/>
+<parameter id="lin_baud_rate" value="9600"/>
+</configuration>
+<resourceusage>
+<resourceusageitem id="cores" value="1"/>
+<resourceusageitem id="memory" value="0"/>
+<resourceusageitem id="codememory" value="1962"/>
+<resourceusageitem id="datamemory" value="146"/>
+<resourceusageitem id="ports1bit" value="0"/>
+<resourceusageitem id="ports4bit" value="2"/>
+<resourceusageitem id="ports8bit" value="0"/>
+<resourceusageitem id="ports16bit" value="0"/>
+<resourceusageitem id="ports32bit" value="0"/>
+<resourceusageitem id="clocks" value="0"/>
+<resourceusageitem id="chanends" value="1"/>
+<resourceusageitem id="timers" value="0"/>
+</resourceusage>
+</buildresult>
+</buildresults>
+</allbuildresults>

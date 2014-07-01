@@ -1,0 +1,225 @@
+#include <platform.h>
+#include <xs1.h>
+#include <stdio.h>
+#include <assert.h>
+#include <dual_drive.h>
+
+#include <stdint.h>
+#include <stdlib.h>
+#include <syscall.h>
+#include <print.h>
+
+#define COM_CORE 0
+#define IFM_CORE 3
+
+#define TIMESTEP 2
+#define MAX_NUM_PORTS 16
+#define NUM_MOTORS 1
+
+// Bit mapping of 4-bit A4935 config port
+#define A4935_BIT_ESF  0x8
+#define A4935_BIT_RSTN 0x4
+#define A4935_BIT_PWML 0x2
+#define A4935_BIT_PWMH 0x1
+
+#define A4935_AFTER_RESET_DELAY (200 * MSEC_FAST/*TICKS_MS*/) // 200ms
+
+#define NUM_OF_PORTS 3
+
+//---- XMOS defines and structures ----//
+#define 	RESOLUTION	    256
+#define 	TIMESTEP	    2
+//----------------------//
+
+on stdcore[3]: out port p_ifm_coastn = XS1_PORT_1G;
+on stdcore[3]: out port p_ifm_esf_rstn_pwml_pwmh = XS1_PORT_4F;
+
+#pragma once
+
+/* 10NSEC_STD --> 1 */
+#define USEC_STD       100
+#define MSEC_STD    100000
+#define SEC_STD  100000000
+
+
+#if PLATFORM_REFERENCE_MHZ == 100
+
+#define USEC_FAST USEC_STD
+#define MSEC_FAST MSEC_STD
+#define SEC_FAST  SEC_STD
+
+#else /* REFCLK_STD == 100 MHZ , REFCLK_FAST == 250 MHZ */
+
+
+/* 4NSEC_FAST --> 1 */
+#define USEC_FAST       250
+#define MSEC_FAST    250000
+#define SEC_FAST  250000000
+
+#endif
+
+
+void a4935_init(unsigned configuration)
+{
+  timer timer1;
+  unsigned time1;
+
+  configuration |= A4935_BIT_ESF; // add enable_stop_on_fault to config bits
+
+  // set config pins and trigger reset
+  p_ifm_esf_rstn_pwml_pwmh <: configuration;
+
+  timer1 :> time1;
+  //timer1 when timerafter(time1 + A4935_AFTER_RESET_DELAY) :> time1;
+  timer1 when timerafter(time1 + (4 * USEC_FAST/*TICKS_US*/)) :> time1; // hold reset for at least 3.5us
+
+  /* enable pull-ups for ff1 and ff2, as these are open-drain outputs
+     and configure as inputs as long as we are just waiting for an
+     error to occur */
+  //configure_in_port_no_ready(p_ff1);
+  //configure_in_port_no_ready(p_ff2);
+
+  // release reset
+  p_ifm_esf_rstn_pwml_pwmh <: ( A4935_BIT_RSTN | configuration );
+
+  // pause before enabling FETs after reset
+  timer1 when timerafter(time1 + A4935_AFTER_RESET_DELAY) :> time1;
+
+  // enable FETs
+  p_ifm_coastn <: 1;
+
+}
+
+void enable_motor_power(void)
+{
+	  const unsigned t_delay = 300*USEC_FAST;
+	  timer t;
+	  unsigned ts;
+
+	  t when timerafter (ts + t_delay) :> ts;
+
+	  a4935_init(A4935_BIT_PWML | A4935_BIT_PWMH);
+	  t when timerafter (ts + t_delay) :> ts;
+}
+
+
+#define PWM_PERIOD 2000
+on stdcore[3]:
+bldc_bridge_t bridge=
+{
+		PWM_PERIOD, /*PWM PERIOD*/
+		XS1_CLKBLK_1, /*CLKBLK*/
+		125, /*CLK DIVIDEND*/
+		5,  /*CLK DIVISOR*/
+		{
+			  XS1_PORT_1K, /* Hi A */
+			  XS1_PORT_1M,  /* Hi C */
+
+			  XS1_PORT_1L,   /* Lo A */
+			  XS1_PORT_1N 	 /* Lo C */
+		}
+};
+
+
+void init_dc100()
+{
+	unsigned pin;
+	for (pin = 0; pin < 4; ++pin)
+	{
+		bridge.pins[pin]<:0;
+	}
+
+	enable_motor_power();
+
+	#if(0)
+		bridge.pins[0]<:1;
+		bridge.pins[3+1]<:1;
+		while(1);
+	#endif
+}
+
+
+
+int main()
+{
+	chan ddrive;
+	par
+	{
+		on stdcore[1]:
+		{
+			timer tmr;
+			unsigned time,s;
+
+			tmr :> time;
+
+			while(1)
+			{
+				unsigned i,j,pout;
+				timer tmr;
+				unsigned time_shut;
+				tmr:>time_shut;
+
+
+//#if(1)
+//for (s = 0; s < 2; ++s)
+//{
+			//	unsigned t,pout=(s==1)?DRIVE_BACKWARD:DRIVE_FORWARD;
+
+			//	for (i = 400; i < PWM_PERIOD; i+=100)
+			//	{
+					//unsigned pout;
+					pout = DRIVE_FORWARD;
+
+					ddrive<:pout;
+
+					ddrive<:1000;
+					time_shut+=100000000;
+					tmr when timerafter(time_shut) :> void;
+			//	}
+
+			//	for (i = 400; i < PWM_PERIOD; i+=100)
+			//	{
+				/*	ddrive<:pout;
+					ddrive<:PWM_PERIOD-i;
+					time_shut+=100000000;
+					tmr when timerafter(time_shut) :> void; */
+			//	}
+
+		/*		//SPEED up
+				for (i = 0, j=0; i < PWM_PERIOD; i+=100)
+				{
+					ddrive<:pout;
+					ddrive<:i;
+					time_shut+=10000000;
+					tmr when timerafter(time_shut) :> void;
+				}
+
+				//SPEED down
+				for (; i != 0; i-=100)
+				{
+					ddrive<:pout;
+					ddrive<:i;
+					time_shut+=10000000;
+					tmr when timerafter(time_shut) :> void;
+				}
+
+
+				time_shut+=10000000;
+				tmr when timerafter(time_shut) :> void; */
+
+//}
+//#endif
+
+
+			}
+		}
+
+		on stdcore[3]:
+		{
+			printf("core 3:\n");
+			init_dc100();
+			printf("Dual ... :\n");
+			dual_drive(bridge, ddrive);
+		}
+	}
+}

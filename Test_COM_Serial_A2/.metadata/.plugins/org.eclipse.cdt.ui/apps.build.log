@@ -1,0 +1,10 @@
+
+**** Build of configuration Debug for project apps ****
+
+xmake CONFIG=Debug all 
+cd test_rs485 && xmake all
+xmake[1]: Entering directory `/home/vdelacruz/Downloads/Yujin_Robots/apps/test_rs485'
+Using modules: module_rs485 module_uart_fast_tx
+xmake[2]: `bin/Debug/app_rs485_Debug.xe' is up to date.
+Build Complete
+xmake[1]: Leaving directory `/home/vdelacruz/Downloads/Yujin_Robots/apps/test_rs485'

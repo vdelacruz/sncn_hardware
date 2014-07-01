@@ -1,0 +1,7 @@
+
+**** Build of configuration Debug for project sc_sncn_motorctrl_sin ****
+
+xmake CONFIG=Debug all 
+cd test_brushed_dc-position-ctrl && xmake all
+/bin/sh: 1: cd: can't cd to test_brushed_dc-position-ctrl
+xmake: *** [test_brushed_dc-position-ctrl.all] Error 2
